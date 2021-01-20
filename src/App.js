@@ -42,6 +42,9 @@ export default function App() {
       <h1>Hello Clever Programmer's Let's build an Instagram Clone</h1>
       {/* Posts */}
       <Post />
+      <Post />
+      <Post />
+      <Post />
       {/* Posts */}
       {
         posts.map((post)=> {
