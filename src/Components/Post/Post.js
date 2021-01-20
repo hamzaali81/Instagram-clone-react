@@ -6,16 +6,19 @@ import Avatar from '@material-ui/core/Avatar';
 //Material UI
 export default function Post(props) {
     console.log(props);
+    const { username,imageUrl,caption } = props;
     return (
         <div className="post">
-             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <div className="post__header">
+             <Avatar className="post__avatar" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <h3>{username}</h3>
             {/* //Avatar */}
+            </div>
 
-            <h3>Username</h3>
             {/* header --> avatar + username */}
-            <img className="post__image" src="https://www.freecodecamp.org/news/content/images/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png" alt="react-image"/>
+            <img  className="post__image" src={imageUrl} alt="react-image" />
             {/* image */}
-            <h4 className="post__text">Username: <strong>Clever</strong> Wow day three live session</h4>
+            <h4 className="post__text">{username}: <strong>Clever</strong> {caption}</h4>
             {/* username + caption */}
         </div>
     )
