@@ -1,6 +1,8 @@
 import React,{ useState,useEffect } from 'react';
 import './App.css';
 import Post from './Components/Post/Post';
+import ImageUpload from './ImageUpload';
+
 import { db,auth } from './firebase';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,7 +49,9 @@ export default function App() {
 
   useEffect(() => {
     const unsubscribe = 
-     auth.onAuthStateChanged(function (authUser) { //persistance
+     auth.onAuthStateChanged((authUser)=> { //persistance
+      console.log(authUser);
+      
           if (authUser) {
               // User is signed in.
               console.log(authUser);
@@ -76,7 +80,7 @@ export default function App() {
 
   useEffect(()=>{
     //this is where the codes run
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot => {
       console.log(snapshot);
       // every time a new post is added, this code firebase
       setPosts(snapshot.docs.map(doc => ({
@@ -93,7 +97,7 @@ export default function App() {
      e.preventDefault();
      auth.createUserWithEmailAndPassword(email, password)
          .then(function (authUser) {
-                console.log(authUser);
+                console.log('authUser',authUser);
                 // authUser.user
               return authUser.user.updateProfile({
                   displayName: username
@@ -118,21 +122,30 @@ export default function App() {
         });
     setOpenSignIn(false)
     }
+
     const emailfn = (e)=>{
       setEmail(e.target.value)
     }
+
     const passwordfn = (e)=> {
       setPassword(e.target.value)
     }
     
-    const usernamefn = (e)=> {
-      setUsername(e.target.value)
-    
-    }
 
   console.log(posts);
+  // console.log(user.displayName);
   return (
     <div className="app">
+{/* 
+      I want to have 
+      Caption input
+      File Picker
+      Post Button */}
+      {user?.displayName ? 
+        (<ImageUpload username={user.displayName}/> ):
+        (
+          <h3>Sorry need to login</h3>
+        )}
 
 <Modal
         open={open}
@@ -149,7 +162,7 @@ export default function App() {
           alt="instagram" />
           
      </center>
-     <Input type="text" placeholder="username" value={username} onChange={usernamefn}/>
+     <Input type="text" placeholder="username" value={username} onChange={(e)=> setUsername(e.target.value)}/>
           <Input type="text" placeholder="email" value={email} onChange={emailfn}/>
           <Input type="password" placeholder="password" value={password} onChange={passwordfn}/>
           <Button type="submit" onClick={signUp}>Sign Up</Button>
@@ -157,6 +170,7 @@ export default function App() {
     
     </div>
       </Modal>
+
 <Modal
         open={openSignIn}
         onClose={()=> setOpenSignIn(false)}
@@ -179,6 +193,7 @@ export default function App() {
     
     </div>
       </Modal>
+
 
       <div className="app__header">
           <img 
