@@ -5,7 +5,7 @@ import { db,stoage } from '../../firebase';
 import firebase from '../../../node_modules/firebase/app';
 //Material UI
 export default function Post(props) {
-    console.log(props);
+    // console.log(props);
     const { user,username,imageUrl,caption,postId } = props;
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState([])
@@ -16,7 +16,7 @@ export default function Post(props) {
     let unsubscribe;
     if(postId){
         //nested listener
-       unsubscribe = db.collection("post")
+        unsubscribe = db.collection("post")
        .doc(postId)
        .collection("comments")
        .orderBy('timestamp','desc')
@@ -43,7 +43,7 @@ export default function Post(props) {
     return (
         <div className="post">
             <div className="post__header">
-             <Avatar className="post__avatar" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+             <Avatar className="post__avatar" alt="Remy Sharp" src={imageUrl} />
             <h3>{username}</h3>
             {/* //Avatar */}
             </div>

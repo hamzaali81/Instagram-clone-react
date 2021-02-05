@@ -8,6 +8,8 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import InstagramEmbed from 'react-instagram-embed';
+ 
 
 
 console.log(db);
@@ -136,16 +138,7 @@ export default function App() {
   // console.log(user.displayName);
   return (
     <div className="app">
-{/* 
-      I want to have 
-      Caption input
-      File Picker
-      Post Button */}
-      {user?.displayName ? 
-        (<ImageUpload username={user.displayName}/> ):
-        (
-          <h3>Sorry need to login</h3>
-        )}
+
 
 <Modal
         open={open}
@@ -200,7 +193,6 @@ export default function App() {
           className="app__headerImage"
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" 
           alt="instagram" />
-      </div>
       {
         user ?(
 
@@ -215,15 +207,45 @@ export default function App() {
         )
 
       }
+      </div>
+     <div className="app__posts">
+       <div className="app__postsLeft">
 
-      <h1>Hello Clever Programmer's Let's build an Instagram Clone</h1>
-  
-      {
+     {
         posts.map(({id,post})=> (
           // console.log(post);
           <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
         ))
       }
+       </div>
+       <div className="app__postRight">
+       <InstagramEmbed
+  url='https://instagr.am/p/Zw9o4/'
+  clientAccessToken='7acf86fa660cf43ebaf3094a7da26539'
+  maxWidth={320}
+  hideCaption={false}
+  containerTagName='div'
+  protocol=''
+  injectScript
+  onLoading={() => {}}
+  onSuccess={() => {}}
+  onAfterRender={() => {}}
+  onFailure={() => {}}
+/>
+       </div>
+     </div>
+
+    
+      {/* 
+      I want to have 
+      Caption input
+      File Picker
+      Post Button */}
+      {user?.displayName ? 
+        (<ImageUpload username={user.displayName}/> ):
+        (
+          <h3>Sorry need to login</h3>
+        )}
     </div>
   )
 }
