@@ -14,3 +14,9 @@
   border-bottom: 1px solid lightgray;
   object-fit: contain;
 }
+
+.app__signup {
+  /* padding: 10px; */
+display: flex;
+flex-direction: column;
+}
