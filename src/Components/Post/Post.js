@@ -9,7 +9,7 @@ export default function Post(props) {
     const { user,username,imageUrl,caption,postId } = props;
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState([])
-    const [postComment,setPostComment] = useState()
+    const [postComment,setPostComment] = useState();
     console.log('props',props);
     useEffect(() => {
     // left unsubscribe
@@ -33,7 +33,7 @@ export default function Post(props) {
      timestamp: firebase.firestore.FieldValue.server
 
  })
- setComment('');
+ setPostComment('');
     }
     return ()=> {
         unsubscribe();
@@ -60,8 +60,8 @@ export default function Post(props) {
                         </p>
                     ))}
                 </div>
-           {
-               user && (
+           {/* {
+               user && ( */}
 
             <form className="post__commentBox">
 
@@ -81,8 +81,8 @@ export default function Post(props) {
            post
            </button>
             </form>
-               )
-           }
+               {/* )
+           } */}
             {/* username + caption */}
         </div>
     )

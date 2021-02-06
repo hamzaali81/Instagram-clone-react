@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import InstagramEmbed from 'react-instagram-embed';
  
-
+console.log('InstagramEmbed',InstagramEmbed);
 
 console.log(db);
 
@@ -214,20 +214,20 @@ export default function App() {
      {
         posts.map(({id,post})=> (
           // console.log(post);
-          <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+          <Post key={id} postId={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
         ))
       }
        </div>
        <div className="app__postRight">
        <InstagramEmbed
-  url='https://instagr.am/p/Zw9o4/'
-  clientAccessToken='9ee327ce4ee9d38acb055a2ce0bd762b'
+  url='https://www.instagram.com/p/BocI075jjcW/'
+  clientAccessToken='EAAMBMFOa3FUBAHtQMXEWZCoNrwrd0O2dAc46LwZAAYkZCLqUNUSINvJ4LgLSaYfcb51wkD8rulpLIgvdTyc2L56LEgTz9IpBjT9x1V2vsxAgoFk1ls2hnXhWioRuBu92u9zAJ61pkdvgZBQQLrQ2GDR5ZCSQ3bd7GmRpeVcfT3WEM7ZAIxRyidUcUPnlLCdlTKt6oyG7qEfg0ZCWJaXkpV68zNfvFrsdZCZBr7s0S2SuKbAZDZD'
   maxWidth={320}
   hideCaption={false}
   containerTagName='div'
   protocol=''
   injectScript
-  onLoading={() => {}}
+  onLoading={() => <h1>Loading.....</h1>}
   onSuccess={() => {}}
   onAfterRender={() => {}}
   onFailure={() => {}}

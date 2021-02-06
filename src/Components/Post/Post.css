@@ -28,3 +28,8 @@ padding: 20px;
 .post__avatar {
     margin-right: 10px;
 }
+
+.post__commentBox{
+    display: flex;
+    margin-top: 10px;
+}
