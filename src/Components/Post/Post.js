@@ -8,9 +8,9 @@ export default function Post(props) {
     // console.log(props);
     const { user,username,imageUrl,caption,postId } = props;
     const [comments, setComments] = useState([]);
-    const [comment, setComment] = useState([])
-    const [postComment,setPostComment] = useState();
+    const [comment, setComment] = useState('')
     console.log('props',props);
+
     useEffect(() => {
     // left unsubscribe
     let unsubscribe;
@@ -22,24 +22,21 @@ export default function Post(props) {
        .orderBy('timestamp','desc')
        .onSnapshot((snapshot)=> {
            setComments(snapshot.docs.map((doc)=> doc.data()));
-       })
+        })
     }
-
+    })
     const postComment = (e)=> {
  e.preventDefault();
- db.collection("post").doc(postId).collection({
+ db.collection("post").doc(postId).collection("comments").add({
      text: comment,
      username: user.displayName,
-     timestamp: firebase.firestore.FieldValue.server
+     timestamp: firebase.firestore.FieldValue.serverTimestamp() 
 
  })
- setPostComment('');
+ setComment('');
     }
-    return ()=> {
-        unsubscribe();
-    };
 
-    },[postId])
+    console.log(comments);
     return (
         <div className="post">
             <div className="post__header">
@@ -53,15 +50,15 @@ export default function Post(props) {
             {/* image */}
             <h4 className="post__text">{username}: <strong>Clever</strong> {caption}</h4>
             
-                <div className="post__comments">
+                <div className=" ">
                     {comments.map((comment)=>(
                         <p>
                             <strong>{comment.username}</strong> {comment.text}
                         </p>
                     ))}
                 </div>
-           {/* {
-               user && ( */}
+           {
+               user && (
 
             <form className="post__commentBox">
 
@@ -81,8 +78,8 @@ export default function Post(props) {
            post
            </button>
             </form>
-               {/* )
-           } */}
+               )
+           } 
             {/* username + caption */}
         </div>
     )
