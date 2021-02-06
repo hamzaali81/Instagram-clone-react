@@ -221,7 +221,7 @@ export default function App() {
        <div className="app__postRight">
        <InstagramEmbed
   url='https://instagr.am/p/Zw9o4/'
-  clientAccessToken='7acf86fa660cf43ebaf3094a7da26539'
+  clientAccessToken='9ee327ce4ee9d38acb055a2ce0bd762b'
   maxWidth={320}
   hideCaption={false}
   containerTagName='div'
