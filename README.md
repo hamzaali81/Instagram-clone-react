@@ -22,7 +22,6 @@ import InstagramEmbed from 'react-instagram-embed';
 />
 
 ```
-
 ###### url: your post url
 ```
 clientAccessToken='your token'
