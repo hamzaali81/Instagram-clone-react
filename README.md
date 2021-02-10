@@ -1,4 +1,8 @@
 # Instagram Clone 
+# Start firebase following npm package add 
+```
+npm add firebase
+```
 demo Project
 (https://instagram-app-clone-b2a4f.web.app/)
 
